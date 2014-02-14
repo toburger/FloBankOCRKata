@@ -47,29 +47,6 @@ namespace Kata_OCR
             return val;
         }
 
-        [Obsolete("Please use TryGetNumber")]
-        public Boolean getReadableState()
-        {
-            return this.isReadable;
-        }
-
-        [Obsolete("Please use TryGetNumber")]
-        public string getAsNumber()
-        {
-            string digitasNumber = this.getAsString();
-            if (hashtable.ContainsKey(digitasNumber))
-            {
-                this.number = hashtable[digitasNumber].ToString();
-                this.isReadable = true;
-            }
-            else
-            {
-                this.number = "?";
-                this.isReadable = false;
-            }
-            return this.number;
-        }    
-
         public bool TryGetNumber(out int number)
         {
             string digitasNumber = this.getAsString();

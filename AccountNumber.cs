@@ -38,7 +38,11 @@ namespace Kata_OCR
         {
             foreach (Digit digit in this.orgData)
             {
-                this.number += digit.getAsNumber();
+                int number;
+                if (!digit.TryGetNumber(out number))
+                    this.number = "?";
+                else
+                    this.number += number.ToString();
             }
         }
 
@@ -56,7 +60,8 @@ namespace Kata_OCR
         public void addDigit(int position , Digit digit)
         {
             this.orgData[position] = digit;
-            digit.getAsNumber();
+            int number;
+            digit.TryGetNumber(out number);
         }
 
         public void check()
@@ -64,11 +69,8 @@ namespace Kata_OCR
 
             foreach (Digit digit in this.orgData)
             {
-                digit.getAsNumber();
-                if (digit.getReadableState() == false)
-                {
-                    this.isreadable = false;
-                }
+                int number;
+                this.isreadable = digit.TryGetNumber(out number);
             }
             this.checkIsValidChecksum(this.number);
         }
