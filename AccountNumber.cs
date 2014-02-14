@@ -29,9 +29,12 @@ namespace Kata_OCR
         /*
          * Return combined digits in account number
          * */
-        public string GetNumber()
+        public string Number
         {
-            return this.number;
+            get
+            {
+                return this.number;
+            }
         }
 
         public void PrepareNumber()
@@ -42,14 +45,12 @@ namespace Kata_OCR
             }
         }
 
-        public Boolean IsReadable()
+        public Boolean IsReadable
         {
-            return this.isreadable;
-        }
-
-        public Array GetAccountNumberAsArray()
-        {
-            return this.orgData;
+            get
+            {
+                return this.isreadable;
+            }
         }
 
         public void AddDigit(int position, Digit digit)
@@ -96,9 +97,12 @@ namespace Kata_OCR
             }
         }
 
-        public Boolean GetIsValidChecksum()
+        public Boolean IsValidChecksum
         {
-            return this.isValidChecksum;
+            get
+            {
+                return this.isValidChecksum;
+            }
         }
 
         public Digit GetDigitByIndex(int index)
@@ -106,9 +110,17 @@ namespace Kata_OCR
             return this.orgData[index];
         }
 
-        public Digit[] GetOrgData()
+        public Digit[] OrgData
         {
-            return this.orgData;
+            get
+            {
+                return this.orgData;
+            }
+        }
+
+        public override string ToString()
+        {
+            return Number;
         }
     }
 }

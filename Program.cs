@@ -58,14 +58,14 @@ namespace Kata_OCR
                     //Begin to evaluate accountNumber 
                     accountNumber.PrepareNumber();
                     accountNumber.Check();
-                    String number = accountNumber.GetNumber();
-                    if (accountNumber.IsReadable() == false)
+                    String number = accountNumber.Number;
+                    if (accountNumber.IsReadable == false)
                     {
                         additionalState = "  ILL";
                     }
                     else
                     {
-                        if (accountNumber.GetIsValidChecksum() == false)
+                        if (accountNumber.IsValidChecksum == false)
                         {
                             additionalState = "  ERR";
                         }
