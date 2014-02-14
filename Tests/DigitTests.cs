@@ -39,7 +39,7 @@ namespace Kata_OCR.Tests
         {
             var digit = new Digit();
             for (int i = 0; i < 3; i++)
-                digit.addString(i, input[i]);
+                digit.AddString(i, input[i]);
             return digit;
         }
     }

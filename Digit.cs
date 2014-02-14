@@ -12,10 +12,11 @@ namespace Kata_OCR
         private string[] digitAsArray = new string[3];
 
         static Dictionary<string, int> hashtable;
+
         static Digit()
         {
             // Create and return new Hashtable.
-            hashtable = new Dictionary<string,int>();
+            hashtable = new Dictionary<string, int>();
             hashtable.Add("     |  |", 1);
             hashtable.Add(" _  _||_ ", 2);
             hashtable.Add(" _  _| _|", 3);
@@ -27,16 +28,16 @@ namespace Kata_OCR
             hashtable.Add(" _ |_| _|", 9);
             hashtable.Add(" _ | ||_|", 0);
         }
-        
-        public void addString(int lineCounter, string subpart)
+
+        public void AddString(int lineCounter, string subpart)
         {
             this.digitAsArray[lineCounter] = subpart;
         }
 
-        private string getAsString()
+        private string GetAsString()
         {
             string val = "";
-            foreach( string temp in this.digitAsArray)
+            foreach (string temp in this.digitAsArray)
             {
                 val = val + temp;
             }
@@ -54,7 +55,7 @@ namespace Kata_OCR
 
         public bool TryGetNumber(out int number)
         {
-            string digitasNumber = this.getAsString();
+            string digitasNumber = this.GetAsString();
             if (hashtable.ContainsKey(digitasNumber))
             {
                 number = hashtable[digitasNumber];

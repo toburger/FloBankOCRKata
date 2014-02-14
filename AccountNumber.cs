@@ -8,16 +8,16 @@ namespace Kata_OCR
     class AccountNumber
     {
         private Digit[] orgData = new Digit[9];
-        
+
         private Boolean isValidChecksum = false;
 
         private Boolean isreadable = true;
 
         private string number;
-        
-        private List <string> possibleAccountNumbers;
-    
-        public string[] possibleReplacer = new string [6] {
+
+        private List<string> possibleAccountNumbers;
+
+        public string[] possibleReplacer = new string[6] {
             " _ ",
             " _|",
             "|_ ",
@@ -25,16 +25,16 @@ namespace Kata_OCR
             "| |",
             "  |"
         };
+        
         /*
          * Return combined digits in account number
-         * 
          * */
-        public string getNumber()
+        public string GetNumber()
         {
-            return this.number; 
+            return this.number;
         }
 
-        public void prepareNumber()
+        public void PrepareNumber()
         {
             foreach (Digit digit in this.orgData)
             {
@@ -42,37 +42,35 @@ namespace Kata_OCR
             }
         }
 
-        public Boolean isReadable()
+        public Boolean IsReadable()
         {
             return this.isreadable;
         }
 
-
-        public Array getAccountNumberAsArray()
+        public Array GetAccountNumberAsArray()
         {
             return this.orgData;
         }
 
-        public void addDigit(int position , Digit digit)
+        public void AddDigit(int position, Digit digit)
         {
             this.orgData[position] = digit;
             int number;
             digit.TryGetNumber(out number);
         }
 
-        public void check()
+        public void Check()
         {
-
             foreach (Digit digit in this.orgData)
             {
                 int number;
                 this.isreadable = digit.TryGetNumber(out number);
             }
-            this.checkIsValidChecksum(this.number);
+            this.CheckIsValidChecksum(this.number);
         }
 
-        public void checkIsValidChecksum(string accountNumber)
-        {            
+        public void CheckIsValidChecksum(string accountNumber)
+        {
             string numberAsString = accountNumber;
             int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
 
@@ -86,30 +84,29 @@ namespace Kata_OCR
                 }
                 else
                 {
-                    checksumAdd = checksumAdd  * (numberArray[i] + tempCounter);
-                    tempCounter-- ;
+                    checksumAdd = checksumAdd * (numberArray[i] + tempCounter);
+                    tempCounter--;
                 }
             }
 
             //Check modulo %11 
             if ((checksumAdd % 11) == 0)
             {
-                this.isValidChecksum = true;               
-            }           
+                this.isValidChecksum = true;
+            }
         }
 
-
-        public Boolean getIsValidChecksum ()
+        public Boolean GetIsValidChecksum()
         {
             return this.isValidChecksum;
         }
 
-        public Digit getDigitByIndex(int index)
+        public Digit GetDigitByIndex(int index)
         {
             return this.orgData[index];
         }
 
-        public Digit[] getOrgData ()
+        public Digit[] GetOrgData()
         {
             return this.orgData;
         }
