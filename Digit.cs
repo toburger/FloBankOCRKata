@@ -36,12 +36,7 @@ namespace Kata_OCR
 
         private string GetAsString()
         {
-            string val = "";
-            foreach (string temp in this.digitAsArray)
-            {
-                val = val + temp;
-            }
-            return val;
+            return string.Join("", digitAsArray);
         }
 
         public override string ToString()
