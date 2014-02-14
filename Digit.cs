@@ -11,10 +11,6 @@ namespace Kata_OCR
     {
         private string[] digitAsArray = new string[3];
 
-        private string number;
-
-        private Boolean isReadable = true;
-
         static Dictionary<string, int> hashtable;
         static Digit()
         {
@@ -37,7 +33,7 @@ namespace Kata_OCR
             this.digitAsArray[lineCounter] = subpart;
         }
 
-        public string getAsString()
+        private string getAsString()
         {
             string val = "";
             foreach( string temp in this.digitAsArray)
@@ -45,6 +41,15 @@ namespace Kata_OCR
                 val = val + temp;
             }
             return val;
+        }
+
+        public override string ToString()
+        {
+            int number;
+            if (TryGetNumber(out number))
+                return number.ToString();
+            else
+                return "?";
         }
 
         public bool TryGetNumber(out int number)

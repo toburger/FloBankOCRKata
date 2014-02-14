@@ -38,11 +38,7 @@ namespace Kata_OCR
         {
             foreach (Digit digit in this.orgData)
             {
-                int number;
-                if (!digit.TryGetNumber(out number))
-                    this.number = "?";
-                else
-                    this.number += number.ToString();
+                this.number += digit.ToString();
             }
         }
 
