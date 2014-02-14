@@ -15,8 +15,8 @@ namespace Kata_OCR.Tests
         [InlineData(382913738, false)]
         public void TestValidChecksum(int number, bool isValid)
         {
-            //bool isValidChecksum = Checksum.IsValid(number);
-            //Assert.Equal(isValid, isValidChecksum);
+            bool isValidChecksum = Checksum.IsValid(number);
+            Assert.Equal(isValid, isValidChecksum);
         }
     }
 }
