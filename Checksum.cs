@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kata_OCR
 {
@@ -51,7 +49,7 @@ namespace Kata_OCR
 
     internal static class EnumerableExtensions
     {
-        public static IEnumerable<R> Selecti<T, R>(this IEnumerable<T> enumerable, Func<int, T, R> selector)
+        public static IEnumerable<TResult> Selecti<TSource, TResult>(this IEnumerable<TSource> enumerable, Func<int, TSource, TResult> selector)
         {
             int i = 0;
             foreach (var item in enumerable)
