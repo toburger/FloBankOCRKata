@@ -14,7 +14,7 @@ namespace Kata_OCR
              *     xs
              *     |> List.rev
              *     |> List.mapi ((+)1>>(*))
-             *     |> List.fold (+) 0
+             *     |> List.sum
              *     |> flip (%) 11
              *     |> (=)0
              */
@@ -22,7 +22,7 @@ namespace Kata_OCR
             int checksum =
                 number.GetDigits()
                       .Selecti((i, d) => (d + 1) * i)
-                      .Aggregate(0, (s, d) => d + s);
+                      .Sum();
             return checksum % 11 == 0;
         }
     }
