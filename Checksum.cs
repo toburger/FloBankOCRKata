@@ -21,7 +21,7 @@ namespace Kata_OCR
              *     |> (=)0
              */
 
-            var checksum =
+            int checksum =
                 number.GetDigits()
                       .Selecti((i, d) => (d + 1) * i)
                       .Aggregate(0, (s, d) => d + s);
@@ -55,9 +55,7 @@ namespace Kata_OCR
         {
             int i = 0;
             foreach (var item in enumerable)
-            {
                 yield return selector(i++, item);
-            }
         }
     }
 }
