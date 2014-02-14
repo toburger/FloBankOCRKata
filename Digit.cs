@@ -29,9 +29,25 @@ namespace Kata_OCR
             hashtable.Add(" _ | ||_|", 0);
         }
 
-        public void AddString(int lineCounter, string subpart)
+        public Digit()
+        { }
+
+        public Digit(string[] subparts)
         {
-            this.digitAsArray[lineCounter] = subpart;
+            if (subparts == null)
+                throw new ArgumentNullException("subparts");
+            if (subparts.Length != 3)
+                throw new ArgumentOutOfRangeException("subparts", "Please provide a valid string array with three items in it.");
+
+            for (int i = 0; i < digitAsArray.Length; i++)
+            {
+                digitAsArray[i] = subparts[i];
+            }
+        }
+
+        public void AddLine(int lineCount, string subpart)
+        {
+            this.digitAsArray[lineCount] = subpart;
         }
 
         private string GetAsString()

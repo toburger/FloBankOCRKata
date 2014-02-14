@@ -16,7 +16,7 @@ namespace Kata_OCR.Tests
         [InlineData(new[] { " _ ", " _|", "|_ " }, 2)]
         public void TestValidNumber(string[] input, int expected)
         {
-            var digit = BuildDigit(input);
+            var digit = new Digit(input);
             int number;
             bool isReadable = digit.TryGetNumber(out number);
             Assert.Equal(true, isReadable);
@@ -28,19 +28,11 @@ namespace Kata_OCR.Tests
         [InlineData(new[] { "   ", " _|", "  |" }, -1)]
         public void TestInvalidNumber(string[] input, int expected)
         {
-            var digit = BuildDigit(input);
+            var digit = new Digit(input);
             int number;
             bool isReadable = digit.TryGetNumber(out number);
             Assert.Equal(false, isReadable);
             Assert.Equal(expected, number);
-        }
-
-        private static Digit BuildDigit(string[] input)
-        {
-            var digit = new Digit();
-            for (int i = 0; i < 3; i++)
-                digit.AddString(i, input[i]);
-            return digit;
         }
     }
 }

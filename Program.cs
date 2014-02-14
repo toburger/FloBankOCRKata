@@ -41,12 +41,12 @@ namespace Kata_OCR
                         if (lineCounter == 0)
                         {
                             Digit digit = new Digit();
-                            digit.AddString(lineCounter, subpart);
+                            digit.AddLine(lineCounter, subpart);
                             accountNumber.AddDigit(i, digit);
                         }
                         else
                         {
-                            accountNumber.GetDigitByIndex(i).AddString(lineCounter, subpart);
+                            accountNumber.GetDigitByIndex(i).AddLine(lineCounter, subpart);
                         }
                     }
                     lineCounter++;
