@@ -38,6 +38,7 @@ namespace Kata_OCR.Tests
 
         [Theory]
         [InlineData(457508000, true)]
+        [InlineData(345882865, true)]
         [InlineData(111111111, false)]
         [InlineData(382913738, false)]
         public void TestValidChecksum(int number, bool isValid)

@@ -21,7 +21,8 @@ namespace Kata_OCR
 
             int checksum =
                 number.GetDigits()
-                      .Selecti((i, d) => (d + 1) * i)
+                      .Reverse()
+                      .Selecti((i, d) => (i + 1) * d)
                       .Sum();
             return checksum % 11 == 0;
         }
