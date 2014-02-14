@@ -56,9 +56,7 @@ namespace Kata_OCR
                     lineCounter = 0;
                     string additionalState = "";
                     //Begin to evaluate accountNumber 
-                    accountNumber.PrepareNumber();
-                    accountNumber.Check();
-                    String number = accountNumber.Number;
+                    String number = accountNumber.GetNumber();
                     if (accountNumber.IsReadable == false)
                     {
                         additionalState = "  ILL";

@@ -29,15 +29,14 @@ namespace Kata_OCR
         /*
          * Return combined digits in account number
          * */
-        public string Number
+        public string GetNumber()
         {
-            get
-            {
+                PrepareNumber();
+                Check();
                 return this.number;
-            }
         }
 
-        public void PrepareNumber()
+        private void PrepareNumber()
         {
             foreach (Digit digit in this.orgData)
             {
@@ -60,7 +59,7 @@ namespace Kata_OCR
             digit.TryGetNumber(out number);
         }
 
-        public void Check()
+        private void Check()
         {
             foreach (Digit digit in this.orgData)
             {
@@ -120,7 +119,7 @@ namespace Kata_OCR
 
         public override string ToString()
         {
-            return Number;
+            return GetNumber();
         }
     }
 }
