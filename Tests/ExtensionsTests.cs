@@ -31,5 +31,22 @@ namespace Kata_OCR.Tests
             var result2 = input.Selecti((i, s) => s);
             Assert.Equal(new[] { "a", "b", "c", "d" }, result2);
         }
+
+        [Fact]
+        public void TestSelectiWithSeed()
+        {
+            var input = new[] { "a", "b", "c", "d" };
+            int seed = 8;
+            int counter = 8;
+            var result = input.Selecti(seed, (i, s) =>
+            {
+                Assert.Equal(counter++, i);
+                return i;
+            }).ToArray();
+            Assert.Equal(new[] { 8, 9, 10, 11 }, result);
+
+            var result2 = input.Selecti((i, s) => s);
+            Assert.Equal(new[] { "a", "b", "c", "d" }, result2);
+        }
     }
 }

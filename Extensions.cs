@@ -23,11 +23,18 @@ namespace Kata_OCR
     {
         public static IEnumerable<TResult> Selecti<TSource, TResult>(
             this IEnumerable<TSource> enumerable,
+            int seed,
             Func<int, TSource, TResult> selector)
         {
-            int i = 0;
             foreach (var item in enumerable)
-                yield return selector(i++, item);
+                yield return selector(seed++, item);
+        }
+
+        public static IEnumerable<TResult> Selecti<TSource, TResult>(
+            this IEnumerable<TSource> enumerable,
+            Func<int, TSource, TResult> selector)
+        {
+            return Selecti(enumerable, 0, selector);
         }
     }
 }
