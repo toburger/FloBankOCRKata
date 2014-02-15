@@ -14,13 +14,6 @@ namespace Kata_OCR
         /// </summary>
         public static IEnumerable<int> GetDigits(this int number)
         {
-            /*
-             * let digits n =
-             *     let digits n = int (floor (log10 (float n))) + 1
-             *     let digitInNumber n i = (n / (pown 10 i)) % 10
-             *     [ for i = (digits n)-1 downto 0 do yield digitInNumber n i ]
-             */
-
             for (int i = (int)Math.Floor(Math.Log10(number)); i >= 0; i--)
                 yield return (int)(number / Math.Pow(10, i)) % 10;
         }

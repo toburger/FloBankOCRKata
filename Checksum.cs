@@ -8,17 +8,6 @@ namespace Kata_OCR
     {
         public static bool IsValid(int number)
         {
-            /*
-             * // F# sample
-             * let checksum xs =
-             *     xs
-             *     |> List.rev
-             *     |> List.mapi ((+)1>>(*))
-             *     |> List.sum
-             *     |> flip (%) 11
-             *     |> (=)0
-             */
-
             int checksum =
                 number.GetDigits()
                       .Reverse()
