@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ChecksumTests.cs" />
     <Compile Include="DigitTests.cs" />
+    <Compile Include="ExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
