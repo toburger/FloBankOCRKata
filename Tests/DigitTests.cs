@@ -16,56 +16,23 @@ namespace Kata_OCR.Tests
         [InlineData(new[] { " _ ", " _|", "|_ " }, 2)]
         public void TestValidNumber(string[] input, int expected)
         {
-            var digit = BuildDigit(input);
-            string number = digit.getAsNumber();
-            Assert.Equal(expected.ToString(), number);
-            bool isReadable = digit.getReadableState();
-            Assert.Equal(true, isReadable);
-        }
-
-        [Theory]
-        [InlineData(new[] { " _ ", "| |", "|_|" }, 0)]
-        [InlineData(new[] { "   ", "  |", "  |" }, 1)]
-        [InlineData(new[] { " _ ", " _|", "|_ " }, 2)]
-        public void TestValidNumber2(string[] input, int expected)
-        {
-            var digit = BuildDigit(input);
+            var digit = new Digit(input);
             int number;
             bool isReadable = digit.TryGetNumber(out number);
             Assert.Equal(true, isReadable);
             Assert.Equal(expected, number);
-        }
-
-        [Theory]
-        [InlineData(new[] { "   ", "   ", "   " }, "?")]
-        [InlineData(new[] { "   ", " _|", "  |" }, "?")]
-        public void TestInvalidNumber(string[] input, string expected)
-        {
-            var digit = BuildDigit(input);
-            string number = digit.getAsNumber();
-            Assert.Equal(expected, number);
-            bool isReadable = digit.getReadableState();
-            Assert.Equal(false, isReadable);
         }
 
         [Theory]
         [InlineData(new[] { "   ", "   ", "   " }, -1)]
         [InlineData(new[] { "   ", " _|", "  |" }, -1)]
-        public void TestInvalidNumber2(string[] input, int expected)
+        public void TestInvalidNumber(string[] input, int expected)
         {
-            var digit = BuildDigit(input);
+            var digit = new Digit(input);
             int number;
             bool isReadable = digit.TryGetNumber(out number);
             Assert.Equal(false, isReadable);
             Assert.Equal(expected, number);
-        }
-
-        private static Digit BuildDigit(string[] input)
-        {
-            var digit = new Digit();
-            for (int i = 0; i < 3; i++)
-                digit.addString(i, input[i]);
-            return digit;
         }
     }
 }

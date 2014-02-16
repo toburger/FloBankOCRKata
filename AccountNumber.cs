@@ -8,16 +8,16 @@ namespace Kata_OCR
     class AccountNumber
     {
         private Digit[] orgData = new Digit[9];
-        
+
         private Boolean isValidChecksum = false;
 
         private Boolean isreadable = true;
 
         private string number;
-        
-        private List <string> possibleAccountNumbers;
-    
-        public string[] possibleReplacer = new string [6] {
+
+        private List<string> possibleAccountNumbers;
+
+        public string[] possibleReplacer = new string[6] {
             " _ ",
             " _|",
             "|_ ",
@@ -25,56 +25,52 @@ namespace Kata_OCR
             "| |",
             "  |"
         };
+        
         /*
          * Return combined digits in account number
-         * 
          * */
-        public string getNumber()
+        public string GetNumber()
         {
-            return this.number; 
+                PrepareNumber();
+                Check();
+                return this.number;
         }
 
-        public void prepareNumber()
+        private void PrepareNumber()
         {
             foreach (Digit digit in this.orgData)
             {
-                this.number += digit.getAsNumber();
+                this.number += digit.ToString();
             }
         }
 
-        public Boolean isReadable()
+        public Boolean IsReadable
         {
-            return this.isreadable;
+            get
+            {
+                return this.isreadable;
+            }
         }
 
-
-        public Array getAccountNumberAsArray()
-        {
-            return this.orgData;
-        }
-
-        public void addDigit(int position , Digit digit)
+        public void AddDigit(int position, Digit digit)
         {
             this.orgData[position] = digit;
-            digit.getAsNumber();
+            int number;
+            digit.TryGetNumber(out number);
         }
 
-        public void check()
+        private void Check()
         {
-
             foreach (Digit digit in this.orgData)
             {
-                digit.getAsNumber();
-                if (digit.getReadableState() == false)
-                {
-                    this.isreadable = false;
-                }
+                int number;
+                this.isreadable = digit.TryGetNumber(out number);
             }
-            this.checkIsValidChecksum(this.number);
+            this.CheckIsValidChecksum(this.number);
         }
 
-        public void checkIsValidChecksum(string accountNumber)
-        {            
+        public void CheckIsValidChecksum(string accountNumber)
+        {
             string numberAsString = accountNumber;
             int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
 
@@ -88,32 +84,42 @@ namespace Kata_OCR
                 }
                 else
                 {
-                    checksumAdd = checksumAdd  * (numberArray[i] + tempCounter);
-                    tempCounter-- ;
+                    checksumAdd = checksumAdd * (numberArray[i] + tempCounter);
+                    tempCounter--;
                 }
             }
 
             //Check modulo %11 
             if ((checksumAdd % 11) == 0)
             {
-                this.isValidChecksum = true;               
-            }           
+                this.isValidChecksum = true;
+            }
         }
 
-
-        public Boolean getIsValidChecksum ()
+        public Boolean IsValidChecksum
         {
-            return this.isValidChecksum;
+            get
+            {
+                return this.isValidChecksum;
+            }
         }
 
-        public Digit getDigitByIndex(int index)
+        public Digit GetDigitByIndex(int index)
         {
             return this.orgData[index];
         }
 
-        public Digit[] getOrgData ()
+        public Digit[] OrgData
         {
-            return this.orgData;
+            get
+            {
+                return this.orgData;
+            }
+        }
+
+        public override string ToString()
+        {
+            return GetNumber();
         }
     }
 }

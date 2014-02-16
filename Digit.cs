@@ -11,15 +11,12 @@ namespace Kata_OCR
     {
         private string[] digitAsArray = new string[3];
 
-        private string number;
-
-        private Boolean isReadable = true;
-
         static Dictionary<string, int> hashtable;
+
         static Digit()
         {
             // Create and return new Hashtable.
-            hashtable = new Dictionary<string,int>();
+            hashtable = new Dictionary<string, int>();
             hashtable.Add("     |  |", 1);
             hashtable.Add(" _  _||_ ", 2);
             hashtable.Add(" _  _| _|", 3);
@@ -31,48 +28,45 @@ namespace Kata_OCR
             hashtable.Add(" _ |_| _|", 9);
             hashtable.Add(" _ | ||_|", 0);
         }
-        
-        public void addString(int lineCounter, string subpart)
-        {
-            this.digitAsArray[lineCounter] = subpart;
-        }
 
-        public string getAsString()
+        public Digit()
+        { }
+
+        public Digit(string[] subparts)
         {
-            string val = "";
-            foreach( string temp in this.digitAsArray)
+            if (subparts == null)
+                throw new ArgumentNullException("subparts");
+            if (subparts.Length != 3)
+                throw new ArgumentOutOfRangeException("subparts", "Please provide a valid string array with three items in it.");
+
+            for (int i = 0; i < digitAsArray.Length; i++)
             {
-                val = val + temp;
+                digitAsArray[i] = subparts[i];
             }
-            return val;
         }
 
-        [Obsolete("Please use TryGetNumber")]
-        public Boolean getReadableState()
+        public void AddLine(int lineCount, string subpart)
         {
-            return this.isReadable;
+            this.digitAsArray[lineCount] = subpart;
         }
 
-        [Obsolete("Please use TryGetNumber")]
-        public string getAsNumber()
+        private string GetAsString()
         {
-            string digitasNumber = this.getAsString();
-            if (hashtable.ContainsKey(digitasNumber))
-            {
-                this.number = hashtable[digitasNumber].ToString();
-                this.isReadable = true;
-            }
+            return string.Join("", digitAsArray);
+        }
+
+        public override string ToString()
+        {
+            int number;
+            if (TryGetNumber(out number))
+                return number.ToString();
             else
-            {
-                this.number = "?";
-                this.isReadable = false;
-            }
-            return this.number;
-        }    
+                return "?";
+        }
 
         public bool TryGetNumber(out int number)
         {
-            string digitasNumber = this.getAsString();
+            string digitasNumber = this.GetAsString();
             if (hashtable.ContainsKey(digitasNumber))
             {
                 number = hashtable[digitasNumber];
