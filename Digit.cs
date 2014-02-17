@@ -38,6 +38,11 @@ namespace Kata_OCR
             digitAsString = string.Join("", subparts);
         }
 
+        public bool TryGetNumber(out int number)
+        {
+            return hashtable.TryGetValue(digitAsString, out number);
+        }
+
         public override string ToString()
         {
             int number;
@@ -45,11 +50,6 @@ namespace Kata_OCR
                 return number.ToString();
             else
                 return "?";
-        }
-
-        public bool TryGetNumber(out int number)
-        {
-            return hashtable.TryGetValue(digitAsString, out number);
         }
     }
 }
