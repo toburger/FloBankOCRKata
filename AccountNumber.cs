@@ -58,7 +58,7 @@ namespace Kata_OCR
             else
             {
                 string numberString = string.Join("", digits.Select(d => d.ToString()));
-                return numberString + " ILL"; //TODO: return the correct result
+                return numberString + " ILL";
             }
         }
     }
