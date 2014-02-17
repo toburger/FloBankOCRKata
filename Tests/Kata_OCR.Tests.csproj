@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountNumberTests.cs" />
     <Compile Include="ChecksumTests.cs" />
     <Compile Include="DigitTests.cs" />
     <Compile Include="ExtensionsTests.cs" />
@@ -64,6 +65,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sample.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
