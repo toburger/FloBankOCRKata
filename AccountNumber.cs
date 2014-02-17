@@ -67,7 +67,7 @@ namespace Kata_OCR
             this.CheckIsValidChecksum(this.number);
         }
 
-        public void CheckIsValidChecksum(string accountNumber)
+        private void CheckIsValidChecksum(string accountNumber)
         {
             string numberAsString = accountNumber;
             int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();

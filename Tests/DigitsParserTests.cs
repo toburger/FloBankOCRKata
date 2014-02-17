@@ -17,8 +17,6 @@ namespace Kata_OCR.Tests
 |_||_   ||_ | ||_|| || || |
   | _|  | _||_||_||_||_||_|";
 
-            //var accountNumber = new AccountNumber(accountNumberSample); // This should be the goal
-
             int length = 9;
 
             var digits = DigitsParser.ParseDigits(accountNumberSample, length);

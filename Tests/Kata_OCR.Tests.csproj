@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountNumberTests.cs" />
     <Compile Include="DigitsParserTests.cs" />
     <Compile Include="ChecksumTests.cs" />
     <Compile Include="DigitTests.cs" />
