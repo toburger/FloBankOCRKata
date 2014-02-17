@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Kata_OCR
+namespace Kata_OCR.Console
 {
     class Program
     {
@@ -16,7 +16,7 @@ namespace Kata_OCR
 
             foreach (var accountNumber in accountNumbers)
             {
-                Console.WriteLine(accountNumber);
+                System.Console.WriteLine(accountNumber);
             }
         }
 
