@@ -10,21 +10,6 @@ namespace Kata_OCR
         private readonly Digit[] digits = new Digit[9];
         private readonly int length;
 
-        private Boolean isValidChecksum = false;
-
-        private Boolean isreadable = true;
-
-        private List<string> possibleAccountNumbers;
-
-        public string[] possibleReplacer = new string[6] {
-            " _ ",
-            " _|",
-            "|_ ",
-            "|_|",
-            "| |",
-            "  |"
-        };
-
         public AccountNumber(string accountNumber, int length = 9)
         {
             if (accountNumber == null)
@@ -38,9 +23,6 @@ namespace Kata_OCR
             }
         }
 
-        /*
-         * Return combined digits in account number
-         * */
         private bool TryGetNumber(out int number)
         {
             var reversedDigits = digits.Reverse().ToArray();
@@ -62,21 +44,6 @@ namespace Kata_OCR
             return isReadable;
         }
 
-        public Boolean IsReadable
-        {
-            get { return this.isreadable; }
-        }
-
-        public void AddDigit(int position, Digit digit)
-        {
-            this.digits[position] = digit;
-        }
-
-        public Boolean IsValidChecksum
-        {
-            get { return this.isValidChecksum; }
-        }
-
         public override string ToString()
         {
             int number;
@@ -89,7 +56,10 @@ namespace Kata_OCR
                     return numberString + " ERR";
             }
             else
-                return "ERROR"; //TODO: return the correct result
+            {
+                string numberString = string.Join("", digits.Select(d => d.ToString()));
+                return numberString + " ILL"; //TODO: return the correct result
+            }
         }
     }
 }
