@@ -7,14 +7,12 @@ namespace Kata_OCR
 {
     class AccountNumber
     {
-        private readonly Digit[] orgData = new Digit[9];
+        private readonly Digit[] digits = new Digit[9];
         private readonly int length;
 
         private Boolean isValidChecksum = false;
 
         private Boolean isreadable = true;
-
-        private int number;
 
         private List<string> possibleAccountNumbers;
 
@@ -40,32 +38,32 @@ namespace Kata_OCR
             var digits = DigitsParser.ParseDigits(accountNumber, length);
             for (int i = 0; i < digits.Length; i++)
             {
-                orgData[i] = digits[i];
+                this.digits[i] = digits[i];
             }
         }
 
         /*
          * Return combined digits in account number
          * */
-        private int GetNumber()
+        private bool TryGetNumber(out int number)
         {
-            int number = PrepareNumber(this.orgData);
-            //Check();
-            return number;
-        }
-
-        private int PrepareNumber(IEnumerable<Digit> digits)
-        {
-            int acc = 0;
             var reversedDigits = digits.Reverse().ToArray();
+
+            bool isReadable = true;
+            int acc = 0;
+            
             for (int i = 0; i < reversedDigits.Length; i++)
             {
-                int number;
+                int n;
                 var d = reversedDigits[i];
-                if (d.TryGetNumber(out number))
-                    acc += ((int)Math.Pow(10, i)) * number;
+                if (d.TryGetNumber(out n))
+                    acc += ((int)Math.Pow(10, i)) * n;
+                else
+                    isReadable = false;
             }
-            return acc;
+
+            number = acc;
+            return isReadable;
         }
 
         public Boolean IsReadable
@@ -75,17 +73,17 @@ namespace Kata_OCR
 
         public void AddDigit(int position, Digit digit)
         {
-            this.orgData[position] = digit;
+            this.digits[position] = digit;
         }
 
         private void Check()
         {
-            foreach (Digit digit in this.orgData)
-            {
-                int number;
-                this.isreadable = digit.TryGetNumber(out number);
-            }
-            this.CheckIsValidChecksum(this.number.ToString());
+            //foreach (Digit digit in this.digits)
+            //{
+            //    int number;
+            //    this.isreadable = digit.TryGetNumber(out number);
+            //}
+            //this.CheckIsValidChecksum(number.ToString());
         }
 
         private void CheckIsValidChecksum(string accountNumber)
@@ -122,7 +120,17 @@ namespace Kata_OCR
 
         public override string ToString()
         {
-            return GetNumber().ToString("d" + length);
+            int number;
+            if (TryGetNumber(out number))
+            {
+                string numberString = number.ToString("d" + length);
+                if (Checksum.IsValid(number))
+                    return numberString;
+                else
+                    return numberString + " ERR";
+            }
+            else
+                return "ERROR"; //TODO: return the correct result
         }
     }
 }

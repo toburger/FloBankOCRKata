@@ -35,7 +35,7 @@ namespace Kata_OCR.Tests
 
             Assert.Equal(56, accountNumbers.Length);
             Assert.Equal("457508000", accountNumbers[0].ToString());
-            Assert.Equal("012345678", accountNumbers[5].ToString());
+            Assert.Equal("012345678 ERR", accountNumbers[5].ToString());
         }
     }
 }
