@@ -76,43 +76,6 @@ namespace Kata_OCR
             this.digits[position] = digit;
         }
 
-        private void Check()
-        {
-            //foreach (Digit digit in this.digits)
-            //{
-            //    int number;
-            //    this.isreadable = digit.TryGetNumber(out number);
-            //}
-            //this.CheckIsValidChecksum(number.ToString());
-        }
-
-        private void CheckIsValidChecksum(string accountNumber)
-        {
-            string numberAsString = accountNumber;
-            int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
-
-            int checksumAdd = 0;
-            int tempCounter = numberArray.Length;
-            for (int i = 0; i < numberArray.Length; i++)
-            {
-                if (i == 0)
-                {
-                    checksumAdd = numberArray[i];
-                }
-                else
-                {
-                    checksumAdd = checksumAdd * (numberArray[i] + tempCounter);
-                    tempCounter--;
-                }
-            }
-
-            //Check modulo %11 
-            if ((checksumAdd % 11) == 0)
-            {
-                this.isValidChecksum = true;
-            }
-        }
-
         public Boolean IsValidChecksum
         {
             get { return this.isValidChecksum; }
