@@ -9,9 +9,8 @@ namespace Kata_OCR
 {
     class Digit
     {
-        private string[] digitAsArray = new string[3];
-
-        static Dictionary<string, int> hashtable;
+        private static readonly Dictionary<string, int> hashtable;
+        private readonly string[] digitAsArray = new string[3];
 
         static Digit()
         {
