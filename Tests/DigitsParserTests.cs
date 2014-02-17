@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Extensions;
 
 namespace Kata_OCR.Tests
 {
@@ -33,19 +34,19 @@ namespace Kata_OCR.Tests
             }
         }
 
-        [Fact]
-        public void TestNearestMatch()
+        [Theory]
+        [InlineData("     | _|", new[] { 1 })]
+        [InlineData("    _| _|", new[] { 3 })]
+        [InlineData("         ", new int[] { })]
+        [InlineData(" _  _  _|", new int[] { 3, 5 })]
+        public void TestNearestMatch(string input, int[] expected)
         {
-            string illegibleDigitSample = "     | _|";
-
-            var digit = new Digit(illegibleDigitSample);
+            var digit = new Digit(input);
             Assert.Equal("?", digit.ToString());
 
-            int[] numbers = DigitsParser.GetNearestMatch(illegibleDigitSample);
+            int[] numbers = DigitsParser.GetNearestMatch(input);
             Assert.NotNull(numbers);
-            Assert.NotEmpty(numbers);
-            Assert.Equal(1, numbers.Length);
-            Assert.Equal(1, numbers[0]);
+            Assert.Equal(expected, numbers);
         }
     }
 }
