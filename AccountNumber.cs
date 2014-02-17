@@ -7,25 +7,26 @@ namespace Kata_OCR
 {
     class AccountNumber
     {
-        private readonly Digit[] digits = new Digit[9];
-        private readonly int length;
+        private readonly Digit[] _digits;
+        private readonly int _length;
 
         public AccountNumber(string accountNumber, int length = 9)
         {
             if (accountNumber == null)
                 throw new ArgumentNullException("accountNumber");
 
-            this.length = length;
+            _length = length;
+            _digits = new Digit[length];
             var digits = DigitsParser.ParseDigits(accountNumber, length);
             for (int i = 0; i < digits.Length; i++)
             {
-                this.digits[i] = digits[i];
+                _digits[i] = digits[i];
             }
         }
 
         private bool TryGetNumber(out int number)
         {
-            var reversedDigits = digits.Reverse().ToArray();
+            var reversedDigits = _digits.Reverse().ToArray();
 
             bool isReadable = true;
             int acc = 0;
@@ -49,7 +50,7 @@ namespace Kata_OCR
             int number;
             if (TryGetNumber(out number))
             {
-                string numberString = number.ToString("d" + length);
+                string numberString = number.ToString("d" + _length);
                 if (Checksum.IsValid(number))
                     return numberString;
                 else
@@ -57,7 +58,7 @@ namespace Kata_OCR
             }
             else
             {
-                string numberString = string.Join("", digits.Select(d => d.ToString()));
+                string numberString = string.Join("", _digits.Select(d => d.ToString()));
                 return numberString + " ILL";
             }
         }

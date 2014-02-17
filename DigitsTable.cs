@@ -11,26 +11,26 @@ namespace Kata_OCR
         private DigitsTable()
         { }
 
-        private static readonly DigitsTable hashtable;
+        private static readonly DigitsTable _hashtable;
 
         static DigitsTable()
         {
-            hashtable = new DigitsTable();
-            hashtable.Add("     |  |", 1);
-            hashtable.Add(" _  _||_ ", 2);
-            hashtable.Add(" _  _| _|", 3);
-            hashtable.Add("   |_|  |", 4);
-            hashtable.Add(" _ |_  _|", 5);
-            hashtable.Add(" _ |_ |_|", 6);
-            hashtable.Add(" _   |  |", 7);
-            hashtable.Add(" _ |_||_|", 8);
-            hashtable.Add(" _ |_| _|", 9);
-            hashtable.Add(" _ | ||_|", 0);
+            _hashtable = new DigitsTable();
+            _hashtable.Add("     |  |", 1);
+            _hashtable.Add(" _  _||_ ", 2);
+            _hashtable.Add(" _  _| _|", 3);
+            _hashtable.Add("   |_|  |", 4);
+            _hashtable.Add(" _ |_  _|", 5);
+            _hashtable.Add(" _ |_ |_|", 6);
+            _hashtable.Add(" _   |  |", 7);
+            _hashtable.Add(" _ |_||_|", 8);
+            _hashtable.Add(" _ |_| _|", 9);
+            _hashtable.Add(" _ | ||_|", 0);
         }
 
         public static DigitsTable Instance
         {
-            get { return hashtable; }
+            get { return _hashtable; }
         }
     }
 }

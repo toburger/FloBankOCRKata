@@ -9,7 +9,7 @@ namespace Kata_OCR
 {
     class Digit
     {
-        private readonly string digitAsString;
+        private readonly string _digitAsString;
 
         public Digit(string digitAsString)
         {
@@ -18,7 +18,7 @@ namespace Kata_OCR
             if (digitAsString.Length != 9)
                 throw new ArgumentException("digitAsString", "The string must have a length of 9 characters.");
 
-            this.digitAsString = digitAsString;
+            _digitAsString = digitAsString;
         }
 
         public Digit(string[] subparts)
@@ -28,12 +28,12 @@ namespace Kata_OCR
             if (subparts.Length != 3)
                 throw new ArgumentOutOfRangeException("subparts", "Please provide a valid string array with three items in it.");
 
-            digitAsString = string.Join("", subparts);
+            _digitAsString = string.Join("", subparts);
         }
 
         public bool TryGetNumber(out int number)
         {
-            return DigitsTable.Instance.TryGetValue(digitAsString, out number);
+            return DigitsTable.Instance.TryGetValue(_digitAsString, out number);
         }
 
         public override string ToString()
