@@ -67,16 +67,7 @@ namespace Kata_OCR
         public bool TryGetNumber(out int number)
         {
             string digitasNumber = this.GetAsString();
-            if (hashtable.ContainsKey(digitasNumber))
-            {
-                number = hashtable[digitasNumber];
-                return true;
-            }
-            else
-            {
-                number = -1;
-                return false;
-            }
+            return hashtable.TryGetValue(digitasNumber, out number);
         }
     }
 }

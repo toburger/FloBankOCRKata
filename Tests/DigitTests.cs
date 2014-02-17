@@ -24,15 +24,14 @@ namespace Kata_OCR.Tests
         }
 
         [Theory]
-        [InlineData(new[] { "   ", "   ", "   " }, -1)]
-        [InlineData(new[] { "   ", " _|", "  |" }, -1)]
+        [InlineData(new[] { "   ", "   ", "   " }, 0)]
+        [InlineData(new[] { "   ", " _|", "  |" }, 0)]
         public void TestInvalidNumber(string[] input, int expected)
         {
             var digit = new Digit(input);
             int number;
             bool isReadable = digit.TryGetNumber(out number);
             Assert.Equal(false, isReadable);
-            Assert.Equal(expected, number);
         }
     }
 }
