@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Kata_OCR
 {
-    class AccountNumber
+    public class AccountNumber
     {
         private readonly Digit[] _digits;
         private readonly int _length;

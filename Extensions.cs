@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kata_OCR
 {
-    public static class Int32Extensions
+    internal static class Int32Extensions
     {
         /// <summary>
         /// Creates an IEnumerable of digits from an integer.
@@ -19,7 +19,7 @@ namespace Kata_OCR
         }
     }
 
-    public static class EnumerableExtensions
+    internal static class EnumerableExtensions
     {
         public static IEnumerable<TResult> Selecti<TSource, TResult>(
             this IEnumerable<TSource> enumerable,
