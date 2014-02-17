@@ -28,10 +28,6 @@ namespace Kata_OCR
             hashtable.Add(" _ | ||_|", 0);
         }
 
-        [Obsolete("Use the constructor where you provide the subparts array")]
-        public Digit()
-        { }
-
         public Digit(string[] subparts)
         {
             if (subparts == null)
@@ -41,12 +37,6 @@ namespace Kata_OCR
 
             for (int i = 0; i < digitAsArray.Length; i++)
                 digitAsArray[i] = subparts[i];
-        }
-
-        [Obsolete("Use the constructor where you provide the subparts array")]
-        public void AddLine(int lineCount, string subpart)
-        {
-            this.digitAsArray[lineCount] = subpart;
         }
 
         private string GetAsString()

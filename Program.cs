@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,8 +7,6 @@ namespace Kata_OCR
 {
     class Program
     {
-        private static AccountNumber accountNumber;
-
         static void Main(string[] args)
         {
             string file = @"..\..\SampleData\sample.txt";
@@ -20,6 +19,10 @@ namespace Kata_OCR
 
             int accountNumberLength = 9;
             int count = 1;
+
+            // Should be better implemented, because it is a "global state" variable.
+            Dictionary<int, List<string>> digits = null;
+
             while ((fileLine = sReader.ReadLine()) != null /*&&  count < 7*/ )
             {
                 count++;
@@ -29,7 +32,7 @@ namespace Kata_OCR
                     fileLine = fileLine.Replace(System.Environment.NewLine, string.Empty);
                     if (lineCounter == 0)
                     {
-                        accountNumber = new AccountNumber();
+                        digits = new Dictionary<int, List<string>>();
                     }
                     // loop beginns from end to assign correct
                     for (var i = 0; i < accountNumberLength; i++)
@@ -40,19 +43,24 @@ namespace Kata_OCR
                         //On first line create digit and ad it to accountnumber
                         if (lineCounter == 0)
                         {
-                            Digit digit = new Digit();
-                            digit.AddLine(lineCounter, subpart);
-                            accountNumber.AddDigit(i, digit);
+                            digits.Add(i, new List<string>() { subpart });
                         }
                         else
                         {
-                            accountNumber.GetDigitByIndex(i).AddLine(lineCounter, subpart);
+                            digits[i].Add(subpart);
                         }
                     }
                     lineCounter++;
                 }
                 else
                 {
+                    var accountNumber = new AccountNumber();
+                    foreach (var kvp in digits)
+                    {
+                        var digit = new Digit(kvp.Value.ToArray());
+                        accountNumber.AddDigit(kvp.Key, digit);
+                    }
+
                     lineCounter = 0;
                     string additionalState = "";
                     //Begin to evaluate accountNumber 
@@ -72,6 +80,7 @@ namespace Kata_OCR
                 }
 
             }
+
             //Console.WriteLine(fileLine);                 
             sReader.Close();
             Console.Read();
