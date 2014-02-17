@@ -39,9 +39,7 @@ namespace Kata_OCR
                 throw new ArgumentOutOfRangeException("subparts", "Please provide a valid string array with three items in it.");
 
             for (int i = 0; i < digitAsArray.Length; i++)
-            {
                 digitAsArray[i] = subparts[i];
-            }
         }
 
         public void AddLine(int lineCount, string subpart)
