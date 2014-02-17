@@ -25,10 +25,6 @@ namespace Kata_OCR
             "  |"
         };
 
-        [Obsolete("Use other constructor")]
-        public AccountNumber()
-        { }
-
         public AccountNumber(string accountNumber, int length = 9)
         {
             if (accountNumber == null)
