@@ -36,9 +36,28 @@ namespace Kata_OCR.Library
             return digits.Select(digitAsString => new Digit(digitAsString))
                          .ToArray();
         }
+
         public static int[] GetNearestMatch(string digit)
         {
-            throw new NotImplementedException();
+            return DigitsTable.Instance.Where(kvp => GetMatchCountOf(kvp.Key, digit, 8))
+                                       .Select(kvp => kvp.Value)
+                                       .ToArray();
+        }
+
+        private static bool GetMatchCountOf(string s1, string s2, int matchCount)
+        {
+            return GetMatches(s1, s2).Where(m => m)
+                                     .Count() == matchCount;
+        }
+
+        private static IEnumerable<bool> GetMatches(string s1, string s2)
+        {
+            if (s1.Length != s2.Length)
+                throw new ArgumentException("The two strings provided must be of the same size.");
+            for (int i = 0; i < s1.Length; i++)
+            {
+                yield return s1[i] == s2[i];
+            }
         }
     }
 }
