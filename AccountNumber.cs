@@ -7,7 +7,7 @@ namespace Kata_OCR
 {
     class AccountNumber
     {
-        private Digit[] orgData = new Digit[9];
+        private readonly Digit[] orgData = new Digit[9];
 
         private Boolean isValidChecksum = false;
 
@@ -25,15 +25,28 @@ namespace Kata_OCR
             "| |",
             "  |"
         };
-        
+
+        [Obsolete("Use other constructor")]
+        public AccountNumber()
+        { }
+
+        public AccountNumber(string accountNumber, int length = 9)
+        {
+            var digits = DigitsParser.ParseDigits(accountNumber, length);
+            for (int i = 0; i < digits.Length; i++)
+            {
+                orgData[i] = digits[i];
+            }
+        }
+
         /*
          * Return combined digits in account number
          * */
         public string GetNumber()
         {
-                PrepareNumber();
-                Check();
-                return this.number;
+            PrepareNumber();
+            Check();
+            return this.number;
         }
 
         private void PrepareNumber()

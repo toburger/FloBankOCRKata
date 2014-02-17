@@ -17,14 +17,7 @@ namespace Kata_OCR.Tests
 |_||_   ||_ | ||_|| || || |
   | _|  | _||_||_||_||_||_|";
 
-            //var accountNumber = new AccountNumber(accountNumberSample); // This should be the goal
-
-            var digits = DigitsParser.ParseDigits(accountNumberSample);
-            var accountNumber = new AccountNumber();
-            for (int i = 0; i < digits.Length; i++)
-            {
-                accountNumber.AddDigit(i, digits[i]);
-            }
+            var accountNumber = new AccountNumber(accountNumberSample);
 
             Assert.Equal("457508000", accountNumber.GetNumber());
         }
