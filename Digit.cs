@@ -11,6 +11,16 @@ namespace Kata_OCR
     {
         private readonly string digitAsString;
 
+        public Digit(string digitAsString)
+        {
+            if (digitAsString == null)
+                throw new ArgumentNullException("digitAsString");
+            if (digitAsString.Length != 9)
+                throw new ArgumentException("digitAsString", "The string must have a length of 9 characters.");
+
+            this.digitAsString = digitAsString;
+        }
+
         public Digit(string[] subparts)
         {
             if (subparts == null)
