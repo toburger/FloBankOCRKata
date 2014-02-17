@@ -55,8 +55,6 @@ namespace Kata_OCR
         public void AddDigit(int position, Digit digit)
         {
             this.orgData[position] = digit;
-            int number;
-            digit.TryGetNumber(out number);
         }
 
         private void Check()
