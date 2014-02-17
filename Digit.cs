@@ -9,24 +9,7 @@ namespace Kata_OCR
 {
     class Digit
     {
-        private static readonly Dictionary<string, int> hashtable;
         private readonly string digitAsString;
-
-        static Digit()
-        {
-            // Create and return new Hashtable.
-            hashtable = new Dictionary<string, int>();
-            hashtable.Add("     |  |", 1);
-            hashtable.Add(" _  _||_ ", 2);
-            hashtable.Add(" _  _| _|", 3);
-            hashtable.Add("   |_|  |", 4);
-            hashtable.Add(" _ |_  _|", 5);
-            hashtable.Add(" _ |_ |_|", 6);
-            hashtable.Add(" _   |  |", 7);
-            hashtable.Add(" _ |_||_|", 8);
-            hashtable.Add(" _ |_| _|", 9);
-            hashtable.Add(" _ | ||_|", 0);
-        }
 
         public Digit(string[] subparts)
         {
@@ -40,7 +23,7 @@ namespace Kata_OCR
 
         public bool TryGetNumber(out int number)
         {
-            return hashtable.TryGetValue(digitAsString, out number);
+            return DigitsTable.Instance.TryGetValue(digitAsString, out number);
         }
 
         public override string ToString()
