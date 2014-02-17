@@ -7,7 +7,7 @@
     <ProjectGuid>{352D22CA-91EB-46D7-B449-5AB0C8464F79}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kata_OCR.Console</RootNamespace>
+    <RootNamespace>Kata_OCR.Library.Console</RootNamespace>
     <AssemblyName>Kata_OCR.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -56,9 +56,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kata_OCR.csproj">
+    <ProjectReference Include="..\Library\Kata_OCR.Library.csproj">
       <Project>{db26027a-cc4f-49fe-8609-f5a283e95ed2}</Project>
-      <Name>Kata_OCR</Name>
+      <Name>Kata_OCR.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

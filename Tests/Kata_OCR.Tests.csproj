@@ -7,7 +7,7 @@
     <ProjectGuid>{58788992-B836-4DA3-9DFB-0114CA695AB6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kata_OCR.Tests</RootNamespace>
+    <RootNamespace>Kata_OCR.Library.Tests</RootNamespace>
     <AssemblyName>Kata_OCR.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -56,9 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kata_OCR.csproj">
+    <ProjectReference Include="..\Library\Kata_OCR.Library.csproj">
       <Project>{db26027a-cc4f-49fe-8609-f5a283e95ed2}</Project>
-      <Name>Kata_OCR</Name>
+      <Name>Kata_OCR.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

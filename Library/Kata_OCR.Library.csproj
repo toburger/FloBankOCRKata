@@ -7,8 +7,8 @@
     <ProjectGuid>{DB26027A-CC4F-49FE-8609-F5A283E95ED2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kata_OCR</RootNamespace>
-    <AssemblyName>Kata_ORC</AssemblyName>
+    <RootNamespace>Kata_OCR.Library</RootNamespace>
+    <AssemblyName>Kata_ORC.Library</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

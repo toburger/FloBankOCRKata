@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Kata_OCR.Library;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xunit;

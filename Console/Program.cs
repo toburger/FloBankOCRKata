@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Kata_OCR.Library;
 
 namespace Kata_OCR.Console
 {

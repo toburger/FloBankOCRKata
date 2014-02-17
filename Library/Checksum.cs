@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Kata_OCR
+namespace Kata_OCR.Library
 {
     static class Checksum
     {

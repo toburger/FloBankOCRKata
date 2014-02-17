@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Kata_OCR
+namespace Kata_OCR.Library
 {
     class Digit
     {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Xunit;
 using Xunit.Extensions;
+using Kata_OCR.Library;
 
 namespace Kata_OCR.Tests
 {

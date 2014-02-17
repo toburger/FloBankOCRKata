@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Kata_OCR.Library;
+using Xunit;
 using Xunit.Extensions;
 
 namespace Kata_OCR.Tests

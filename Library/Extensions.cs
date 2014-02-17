@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kata_OCR
+namespace Kata_OCR.Library
 {
     internal static class Int32Extensions
     {
