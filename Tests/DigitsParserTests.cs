@@ -32,5 +32,20 @@ namespace Kata_OCR.Tests
                 Assert.Equal(ns[i], number);
             }
         }
+
+        [Fact]
+        public void TestNearestMatch()
+        {
+            string illegibleDigitSample = "     | _|";
+
+            var digit = new Digit(illegibleDigitSample);
+            Assert.Equal("?", digit.ToString());
+
+            int[] numbers = DigitsParser.GetNearestMatch(illegibleDigitSample);
+            Assert.NotNull(numbers);
+            Assert.NotEmpty(numbers);
+            Assert.Equal(1, numbers.Length);
+            Assert.Equal(1, numbers[0]);
+        }
     }
 }

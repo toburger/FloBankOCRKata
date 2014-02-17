@@ -36,5 +36,9 @@ namespace Kata_OCR.Library
             return digits.Select(digitAsString => new Digit(digitAsString))
                          .ToArray();
         }
+        public static int[] GetNearestMatch(string digit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
