@@ -10,7 +10,7 @@ namespace Kata_OCR
     class Digit
     {
         private static readonly Dictionary<string, int> hashtable;
-        private readonly string[] digitAsArray = new string[3];
+        private readonly string digitAsString;
 
         static Digit()
         {
@@ -35,15 +35,7 @@ namespace Kata_OCR
             if (subparts.Length != 3)
                 throw new ArgumentOutOfRangeException("subparts", "Please provide a valid string array with three items in it.");
 
-            for (int i = 0; i < digitAsArray.Length; i++)
-                digitAsArray[i] = subparts[i];
-        }
-
-        private string GetAsString()
-        {
-            // Could be done in the constructor to eliminate the need of joining the array every time.
-            // Afterwards the array is also unneeded.
-            return string.Join("", digitAsArray);
+            digitAsString = string.Join("", subparts);
         }
 
         public override string ToString()
@@ -57,8 +49,7 @@ namespace Kata_OCR
 
         public bool TryGetNumber(out int number)
         {
-            string digitasNumber = this.GetAsString();
-            return hashtable.TryGetValue(digitasNumber, out number);
+            return hashtable.TryGetValue(digitAsString, out number);
         }
     }
 }
