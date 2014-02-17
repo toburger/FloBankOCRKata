@@ -42,7 +42,7 @@ namespace Kata_OCR
         /*
          * Return combined digits in account number
          * */
-        public string GetNumber()
+        private string GetNumber()
         {
             PrepareNumber();
             Check();
@@ -113,11 +113,6 @@ namespace Kata_OCR
             {
                 return this.isValidChecksum;
             }
-        }
-
-        public Digit GetDigitByIndex(int index)
-        {
-            return this.orgData[index];
         }
 
         public Digit[] OrgData

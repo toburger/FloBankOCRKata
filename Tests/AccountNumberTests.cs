@@ -17,7 +17,7 @@ namespace Kata_OCR.Tests
 
             var accountNumber = new AccountNumber(accountNumberSample);
 
-            Assert.Equal("457508000", accountNumber.GetNumber());
+            Assert.Equal("457508000", accountNumber.ToString());
         }
 
         [Fact]
@@ -34,8 +34,8 @@ namespace Kata_OCR.Tests
             var accountNumbers = ans.Select(an => new AccountNumber(an)).ToArray();
 
             Assert.Equal(56, accountNumbers.Length);
-            Assert.Equal("457508000", accountNumbers[0].GetNumber());
-            Assert.Equal("012345678", accountNumbers[5].GetNumber());
+            Assert.Equal("457508000", accountNumbers[0].ToString());
+            Assert.Equal("012345678", accountNumbers[5].ToString());
         }
     }
 }
