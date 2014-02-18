@@ -17,7 +17,8 @@ namespace Kata_OCR.Library
                         let lls = from line in lines
                                   select from i in Enumerable.Range(0, length)
                                          select line.Substring(i * 3, 3)
-                        select lls.ElementAt(0).ElementAt(j) + lls.ElementAt(1).ElementAt(j) + lls.ElementAt(2).ElementAt(j)
+                        let lla = lls.Select(ls => ls.ToArray()).ToArray()
+                        select lla[0][j] + lla[1][j] + lla[2][j]
                     select new Digit(digitAsString)).ToArray();
         }
 
