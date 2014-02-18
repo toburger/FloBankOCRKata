@@ -38,10 +38,8 @@ namespace Kata_OCR.Library
         {
             if (s1.Length != s2.Length)
                 throw new ArgumentException("The two strings provided must be of the same size.");
-            for (int i = 0; i < s1.Length; i++)
-            {
-                yield return s1[i] == s2[i];
-            }
+
+            return s1.Zip(s2, (c1, c2) => c1 == c2);
         }
     }
 }
