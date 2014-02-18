@@ -26,23 +26,25 @@ namespace Kata_OCR.Library
 
         private bool TryGetNumber(out int number)
         {
-            var reversedDigits = _digits.Reverse().ToArray();
+            var res =
+                _digits
+                    .Reverse()
+                    .Aggregate(Tuple.Create(0, 0, true), (state, d) =>
+                    {
+                        int i = state.Item1;
+                        int acc = state.Item2;
+                        bool isReadable = state.Item3;
 
-            bool isReadable = true;
-            int acc = 0;
-            
-            for (int i = 0; i < reversedDigits.Length; i++)
-            {
-                int n;
-                var d = reversedDigits[i];
-                if (d.TryGetNumber(out n))
-                    acc += ((int)Math.Pow(10, i)) * n;
-                else
-                    isReadable = false;
-            }
+                        int n;
+                        if (d.TryGetNumber(out n))
+                            acc += ((int)Math.Pow(10, i)) * n;
+                        else
+                            isReadable = false;
 
-            number = acc;
-            return isReadable;
+                        return Tuple.Create(i + 1, acc, isReadable);
+                    });
+            number = res.Item2;
+            return res.Item3;
         }
 
         public override string ToString()
