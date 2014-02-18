@@ -12,18 +12,13 @@ namespace Kata_OCR.Library
         {
             string[] lines = accountNumber.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var lls = lines
-                .Select(line =>
-                    Enumerable.Range(0, length)
-                              .Select(i => line.Substring(i * 3, 3))
-                              .ToArray())
-                .ToArray();
-
-            return Enumerable
-                .Range(0, length)
-                .Select(i => lls[0][i] + lls[1][i] + lls[2][i])
-                .Select(digitAsString => new Digit(digitAsString))
-                .ToArray();
+            return (from digitAsString in
+                        from j in Enumerable.Range(0, length)
+                        let lls = from line in lines
+                                  select from i in Enumerable.Range(0, length)
+                                         select line.Substring(i * 3, 3)
+                        select lls.ElementAt(0).ElementAt(j) + lls.ElementAt(1).ElementAt(j) + lls.ElementAt(2).ElementAt(j)
+                    select new Digit(digitAsString)).ToArray();
         }
 
         public static int[] GetNearestMatch(string digit)
