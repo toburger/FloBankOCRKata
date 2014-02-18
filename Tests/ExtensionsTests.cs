@@ -67,5 +67,18 @@ namespace Kata_OCR.Tests
             input.Iteri(9, (i, _) => counter += i);
             Assert.Equal(42, counter);
         }
+
+        [Theory]
+        [InlineData("a\nb\nc", false, new[] { "a", "b", "c"})]
+        [InlineData("a\r\nb\r\nc", false, new[] { "a", "b", "c" })]
+        [InlineData("a\n\nc", false, new[] { "a", "", "c" })]
+        [InlineData("a\n\nc", true, new[] { "a", "c" })]
+        [InlineData("a\n\nc\n", false, new[] { "a", "", "c" })]
+        [InlineData("a\n\nc\n", true, new[] { "a", "c" })]
+        public void TestStringGetLines(string input, bool ignoreEmptyLines, string[] expected)
+        {
+            var result = input.GetLines(ignoreEmptyLines);
+            Assert.Equal(expected, result);
+        }
     }
 }

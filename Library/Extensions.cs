@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,25 @@ namespace Kata_OCR.Library
             Action<int, TSource> action)
         {
             Iteri(enumerable, 0, action);
+        }
+
+        public static TSource[][] ToArray2D<TSource>(this IEnumerable<IEnumerable<TSource>> enumerable)
+        {
+            return enumerable.Select(ls => ls.ToArray()).ToArray();
+        }
+    }
+
+    internal static class StringExtensions
+    {
+        public static IEnumerable<string> GetLines(this string @string, bool ignoreEmptyLines = false)
+        {
+            string line;
+            using (var reader = new StringReader(@string))
+                while ((line = reader.ReadLine()) != null)
+                    if (ignoreEmptyLines && string.IsNullOrEmpty(line))
+                        continue;
+                    else
+                        yield return line;
         }
     }
 }

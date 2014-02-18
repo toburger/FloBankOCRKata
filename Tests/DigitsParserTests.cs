@@ -21,7 +21,7 @@ namespace Kata_OCR.Tests
 
             int length = 9;
 
-            var digits = DigitsParser.ParseDigits(accountNumberSample, length);
+            var digits = DigitsParser.ParseDigits(accountNumberSample, length).ToArray();
             Assert.Equal(length, digits.Count());
 
             var ns = 457508000.GetDigits().ToArray();
@@ -44,7 +44,7 @@ namespace Kata_OCR.Tests
             var digit = new Digit(input);
             Assert.Equal("?", digit.ToString());
 
-            int[] numbers = DigitsParser.GetNearestMatch(input);
+            int[] numbers = DigitsParser.GetNearestMatch(input).ToArray();
             Assert.NotNull(numbers);
             Assert.Equal(expected, numbers);
         }
