@@ -6,23 +6,28 @@ namespace Kata_OCR.Library
 {
     static class DigitsParser
     {
-        public static IEnumerable<Digit> ParseDigits(string accountNumber, int length = 9)
+        public static IEnumerable<Digit> ParseDigits(string accountNumber, int length = 9, int digitSize = 3)
+        {
+            return from digitAsString in GetDigitLines(accountNumber, length, digitSize)
+                   select new Digit(digitAsString);
+        }
+
+        private static IEnumerable<string> GetDigitLines(string accountNumber, int length, int digitSize)
         {
             var lines = accountNumber.GetLines(true);
-            return from digitAsString in
-                       from j in Enumerable.Range(0, length)
-                       let lls = from line in lines
-                                 select from i in Enumerable.Range(0, length)
-                                        select line.Substring(i * 3, 3)
-                       let lla = lls.ToArray2D()
-                       select lla[0][j] + lla[1][j] + lla[2][j]
-                   select new Digit(digitAsString);
+            return from j in Enumerable.Range(0, length)
+                   let lls = from line in lines
+                             select from i in Enumerable.Range(0, length)
+                                    select line.Substring(i * digitSize, digitSize)
+                   let lla = lls.ToArray2D()
+                   select string.Join(string.Empty, Enumerable.Range(0, digitSize).Select(i => lla[i][j]));
         }
 
         public static IEnumerable<int> GetNearestMatch(string digit)
         {
-            return DigitsTable.Instance.Where(kvp => GetMatchCountOf(kvp.Key, digit, 8))
-                                       .Select(kvp => kvp.Value);
+            return from kvp in DigitsTable.Instance
+                   where GetMatchCountOf(kvp.Key, digit, 8)
+                   select kvp.Value;
         }
 
         private static bool GetMatchCountOf(string s1, string s2, int matchCount)
