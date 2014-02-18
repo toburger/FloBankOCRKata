@@ -20,7 +20,8 @@ namespace Kata_OCR.Library
                              select from i in Enumerable.Range(0, length)
                                     select line.Substring(i * digitSize, digitSize)
                    let lla = lls.ToArray2D()
-                   select string.Join(string.Empty, Enumerable.Range(0, digitSize).Select(i => lla[i][j]));
+                   select string.Join(string.Empty, from i in Enumerable.Range(0, digitSize)
+                                                    select lla[i][j]);
         }
 
         public static IEnumerable<int> GetNearestMatch(string digit)
