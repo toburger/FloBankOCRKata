@@ -17,11 +17,8 @@ namespace Kata_OCR.Library
 
             _length = length;
             _digits = new Digit[length];
-            var digits = DigitsParser.ParseDigits(accountNumber, length);
-            for (int i = 0; i < digits.Length; i++)
-            {
-                _digits[i] = digits[i];
-            }
+            DigitsParser.ParseDigits(accountNumber, length)
+                        .Iteri((i, d) => _digits[i] = d);
         }
 
         private bool TryGetNumber(out int number)

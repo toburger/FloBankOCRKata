@@ -36,5 +36,29 @@ namespace Kata_OCR.Library
         {
             return Selecti(enumerable, 0, selector);
         }
+
+        public static void Iter<TSource>(
+            this IEnumerable<TSource> enumerable,
+            Action<TSource> action)
+        {
+            foreach (var item in enumerable)
+                action(item);
+        }
+
+        public static void Iteri<TSource>(
+            this IEnumerable<TSource> enumerable,
+            int seed,
+            Action<int, TSource> action)
+        {
+            foreach (var item in enumerable)
+                action(seed++, item);
+        }
+
+        public static void Iteri<TSource>(
+            this IEnumerable<TSource> enumerable,
+            Action<int, TSource> action)
+        {
+            Iteri(enumerable, 0, action);
+        }
     }
 }

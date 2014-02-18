@@ -49,5 +49,23 @@ namespace Kata_OCR.Tests
             var result2 = input.Selecti((i, s) => s);
             Assert.Equal(new[] { "a", "b", "c", "d" }, result2);
         }
+
+        [Fact]
+        public void TestIter()
+        {
+            var input = new[] { "a", "b", "c", "d" };
+            int counter = 0;
+            input.Iter(_ => counter++);
+            Assert.Equal(4, counter);
+        }
+
+        [Fact]
+        public void TestIteriWithSeed()
+        {
+            var input = new[] { "a", "b", "c", "d" };
+            int counter = 0;
+            input.Iteri(9, (i, _) => counter += i);
+            Assert.Equal(42, counter);
+        }
     }
 }
