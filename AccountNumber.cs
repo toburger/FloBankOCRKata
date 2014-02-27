@@ -14,8 +14,8 @@ namespace Kata_OCR
         private Boolean isreadable = true;
 
         private string number;
-        
-        private List <string> possibleAccountNumbers;
+
+        private List<string> possibleAccountNumbers = new List<string>();
     
         public string[] possibleReplacer = new string [6] {
             " _ ",
@@ -81,7 +81,7 @@ namespace Kata_OCR
             this.checkIsValidChecksum(this.number);
         }
 
-        public void checkIsValidChecksum(string accountNumber)
+        public Boolean checkIsValidChecksum(string accountNumber)
         {            
             string numberAsString = accountNumber;
             int[] numberArray = numberAsString.ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
@@ -97,8 +97,10 @@ namespace Kata_OCR
             //Check modulo %11 
             if ((checksumAdd % 11) == 0)
             {
-                this.isValidChecksum = true;               
-            }           
+                this.isValidChecksum = true;
+                return true;
+            }
+            return false;
         }
 
 
@@ -115,6 +117,16 @@ namespace Kata_OCR
         public Digit[] getOrgData ()
         {
             return this.orgData;
+        }
+
+        public List <string> getPossibleAccountNumbers()
+        {
+            return this.possibleAccountNumbers;
+        }
+
+        public void addPossibleRefactoredNumber(string toTestAccountnumber)
+        {
+            this.possibleAccountNumbers.Add(toTestAccountnumber);
         }
     }
 }
